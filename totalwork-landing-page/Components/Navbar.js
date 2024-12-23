@@ -2,74 +2,24 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import "./Navbar.css";
 
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const dropdownRef = useRef(null); // Ref for dropdown menu
-  const burgerRef = useRef(null); // Ref for burger menu
+  const dropdownRef = useRef(null);
+  const burgerRef = useRef(null);
 
   const handleScroll = (id) => {
-    const isMobile = window.innerWidth <= 425; // For screens 426px or less
-    const isSmallMobile = window.innerWidth <= 384; // For screens 321px or less
-    const isTablet = window.innerWidth <= 1023 && window.innerWidth > 767; // For screens 1023px to 768px
-
-    if (id === "home") {
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = 80;
+      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = elementPosition - offset;
       window.scrollTo({
-        top: 0,
+        top: offsetPosition,
         behavior: "smooth",
       });
-    } else {
-      const element = document.getElementById(id);
-      if (element) {
-        let offset = 100; // Default offset for desktop
-
-        // Adjust offsets for specific sections
-        if (id === "testimonials") {
-          offset = isSmallMobile
-            ? 230
-            : isMobile
-            ? 220
-            : isTablet
-            ? 150
-            : 200;
-        } else if (id === "faq") {
-          offset = isSmallMobile
-            ? 170
-            : isMobile
-            ? 150
-            : isTablet
-            ? 100
-            : 140;
-        } else if (id === "pricing") {
-          offset = isSmallMobile
-            ? 190
-            : isMobile
-            ? 190
-            : isTablet
-            ? 110
-            : 170;
-        } else if (id === "benefits") {
-          offset = isSmallMobile
-            ? 170
-            : isMobile
-            ? 170
-            : isTablet
-            ? 100
-            : 140;
-        }
-
-        const elementPosition =
-          element.getBoundingClientRect().top + window.pageYOffset;
-        const offsetPosition = elementPosition - offset;
-
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth",
-        });
-      }
     }
-    setIsDropdownOpen(false); // Close dropdown after scrolling
+    setIsDropdownOpen(false);
   };
 
   const toggleDropdown = () => {
@@ -77,7 +27,6 @@ const Navbar = () => {
   };
 
   const handleClickOutside = (event) => {
-    // Check if the click is outside both dropdown and burger menu
     if (
       dropdownRef.current &&
       !dropdownRef.current.contains(event.target) &&
@@ -90,91 +39,85 @@ const Navbar = () => {
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
-
-    // Cleanup the event listener on unmount
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
   return (
-    <header className="navbar">
-      <a href="#home">
-        <Image
-          src="/TotalWorLogoWhite_cropped.png"
-          alt="Company Logo"
-          className="navbar-logo"
-          width={120} // Adjust width as needed
-          height={45} // Adjust height as needed
-          priority
-        />
-      </a>
+    <header className="fixed top-0 left-0 w-full bg-blue-600 shadow-md z-50">
+      <div className="p-4">
+        {/* Mobile Layout */}
+        <div className="sm:hidden flex flex-col items-center">
+          <a href="#home">
+            <Image
+              src="/TotalWorLogoWhite_cropped.png"
+              alt="Company Logo"
+              width={120}
+              height={45}
+              priority
+            />
+          </a>
+          <div
+            className="mt-4 cursor-pointer flex flex-col gap-1"
+            onClick={toggleDropdown}
+            ref={burgerRef}
+          >
+            <div className="w-6 h-1 bg-white"></div>
+            <div className="w-6 h-1 bg-white"></div>
+            <div className="w-6 h-1 bg-white"></div>
+          </div>
+        </div>
 
-      <div className="burger-menu" onClick={toggleDropdown} ref={burgerRef}>
-        <div className="burger-line"></div>
-        <div className="burger-line"></div>
-        <div className="burger-line"></div>
-      </div>
+        {/* Desktop Layout */}
+        <div className="hidden sm:flex sm:justify-between sm:items-center">
+          <a href="#home">
+            <Image
+              src="/TotalWorLogoWhite_cropped.png"
+              alt="Company Logo"
+              width={120}
+              height={45}
+              priority
+            />
+          </a>
+          <nav className="flex gap-6 text-white text-lg">
+            {["home", "benefits", "testimonials", "pricing", "faq", "cta"].map((id) => (
+              <a
+                key={id}
+                href={`#${id}`}
+                className="hover:text-blue-300"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleScroll(id);
+                }}
+              >
+                {id.charAt(0).toUpperCase() + id.slice(1)}
+              </a>
+            ))}
+          </nav>
+        </div>
 
-      <div
-        className={`dropdown-menu ${isDropdownOpen ? "is-active" : ""}`}
-        ref={dropdownRef}
-      >
-        <a
-          href="#home"
-          onClick={(e) => {
-            e.preventDefault();
-            handleScroll("home");
-          }}
+        {/* Dropdown Menu */}
+        <nav
+          ref={dropdownRef}
+          className={`absolute left-1/2 transform -translate-x-1/2 bg-blue-600 text-white rounded-lg shadow-lg p-4 flex flex-col gap-2 ${
+            isDropdownOpen ? "scale-100" : "scale-0"
+          } origin-top-center transition-transform duration-200 mt-4 sm:hidden`}
         >
-          Home
-        </a>
-        <a
-          href="#benefits"
-          onClick={(e) => {
-            e.preventDefault();
-            handleScroll("benefits");
-          }}
-        >
-          Benefits
-        </a>
-        <a
-          href="#testimonials"
-          onClick={(e) => {
-            e.preventDefault();
-            handleScroll("testimonials");
-          }}
-        >
-          Testimonials
-        </a>
-        <a
-          href="#pricing"
-          onClick={(e) => {
-            e.preventDefault();
-            handleScroll("pricing");
-          }}
-        >
-          Pricing
-        </a>
-        <a
-          href="#faq"
-          onClick={(e) => {
-            e.preventDefault();
-            handleScroll("faq");
-          }}
-        >
-          FAQ
-        </a>
-        <a
-          href="#cta"
-          onClick={(e) => {
-            e.preventDefault();
-            handleScroll("cta");
-          }}
-        >
-          Contact Us
-        </a>
-
+          {["home", "benefits", "testimonials", "pricing", "faq", "cta"].map((id) => (
+            <a
+              key={id}
+              href={`#${id}`}
+              className="hover:bg-blue-500 rounded px-2 py-1"
+              onClick={(e) => {
+                e.preventDefault();
+                handleScroll(id);
+              }}
+            >
+              {id.charAt(0).toUpperCase() + id.slice(1)}
+            </a>
+          ))}
+        </nav>
       </div>
     </header>
   );

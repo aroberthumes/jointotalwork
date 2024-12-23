@@ -1,8 +1,8 @@
 module.exports = {
-  output: 'export', // Enables static export
+  output: 'export',
   images: {
-    unoptimized: true, // Required for GitHub Pages to work with `next/image`
+    unoptimized: true,
   },
-  basePath: '/https://github.com/aroberthumes/jointotalwork', // Replace <repository-name> with your GitHub repo name
-  assetPrefix: '/https://github.com/aroberthumes/jointotalwork/tree/main/totalwork-landing-page/public', // Prefix for assets like images and CSS
+  basePath: '/totalwork-landing-page',
+  assetPrefix: '/totalwork-landing-page',
 };
