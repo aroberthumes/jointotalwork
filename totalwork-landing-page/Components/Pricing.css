@@ -1,0 +1,120 @@
+.pricing {
+    display: flex;
+    justify-content: center;
+    gap: 15%; /* Adds space between the two cards */
+    padding: 2rem;
+    background-color: #f9f9f9; /* Light background for the section */
+  }
+  
+  .pricing-card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    width: 280px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .pricing-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 0.1rem;
+  }
+  
+  .pricing-price {
+    font-size: 1.25rem;
+    color: #333;
+    margin-bottom: 1rem;
+  }
+  
+  .pricing-description {
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+
+  .pricing-description-enterprise { 
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 2.1rem;
+  }
+  
+  .pricing-limit {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+  }
+  
+  .pricing-button {
+    background-color: #0073e6;
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  .pricing-button:hover {
+    background-color: #0047cc;
+  }
+  
+  .pricing-note {
+    font-size: 0.8rem;
+    color: #666;
+    margin-bottom: 1rem;
+  }
+  
+  hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 1rem 0;
+  }
+  
+  .pricing-includes h4 {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  
+  .feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .feature-item {
+    font-size: 0.85rem;
+    margin: 0.5rem 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  .included span {
+    color: green;
+    margin-right: 0.5rem;
+  }
+
+  .included {
+    text-align: justify;
+}
+  
+  .excluded span {
+    color: red;
+    margin-right: 0.5rem;
+  }
+  
+  /* Add media query for screens 425px or smaller */
+@media (max-width: 425px) {
+  .pricing {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem; /* Adjust spacing between the cards */
+  }
+
+  .pricing-card {
+    width: 100%; /* Make cards take the full width */
+    max-width: 320px; /* Optional: Limit the maximum width */
+  }
+}
