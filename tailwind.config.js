@@ -1,10 +1,8 @@
-/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    // For Next.js App Router
-    "./app/**/*.{js,ts,jsx,tsx}",
-    // For any components outside the `app` folder
-    "./components/**/*.{js,ts,jsx,tsx}",
+    './app/**/*.{js,ts,jsx,tsx,mdx}',      // Add app directory
+    './Components/**/*.{js,ts,jsx,tsx}',    // Correct case for Components
+    './pages/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {},

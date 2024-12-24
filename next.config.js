@@ -1,19 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  output: 'export',
   images: {
-    domains: [], // add external domains here if needed
-  },
-  webpack: (config) => {
-    config.resolve = {
-      ...config.resolve,
-      fallback: { 
-        fs: false, 
-        path: false,
-      },
-    };
-    return config;
-  },
+    unoptimized: true,
+  }
 };
 
 module.exports = nextConfig;
