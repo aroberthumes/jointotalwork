@@ -1,11 +1,18 @@
-module.exports = {
+import type { Config } from 'tailwindcss'
+import formsPlugin from '@tailwindcss/forms'
+
+const config: Config = {
   content: [
-    './app/**/*.{js,ts,jsx,tsx,mdx}',      // Add app directory
-    './Components/**/*.{js,ts,jsx,tsx}',    // Correct case for Components
-    './pages/**/*.{js,ts,jsx,tsx}',
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {},
   },
-  plugins: [],
-};
+  plugins: [
+    formsPlugin,
+  ],
+}
+
+export default config

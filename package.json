@@ -3,16 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "predeploy": "npm run build",
     "dev": "next dev --turbopack",
     "build": "next build",
-    "export": "next build && next export",
     "start": "next start",
     "lint": "next lint",
-    "deploy": "gh-pages -d out"
+    "export": "next build",
+    "deploy": "touch out/.nojekyll && gh-pages -d out -t true"
   },
   "dependencies": {
     "@tailwindcss/forms": "^0.5.9",
+    "autoprefixer": "^10.4.20",
     "next": "15.1.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
@@ -22,6 +22,7 @@
     "@types/node": "^20.17.10",
     "@types/react": "^19.0.2",
     "@types/react-dom": "^19",
+    "@types/webpack": "^5.28.5",
     "eslint": "^9",
     "eslint-config-next": "15.1.2",
     "gh-pages": "^5.0.0",
