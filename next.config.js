@@ -1,10 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
-  assetPrefix: '/totalwork-landing-page', // Replace with your GitHub repo name
-  basePath: '/totalwork-landing-page',   // Replace with your GitHub repo name
+  reactStrictMode: true,
   images: {
-    unoptimized: true, // Necessary for static export
+    domains: [], // Add any external domains if you're using external images
   },
   webpack: (config) => {
     config.resolve = {
