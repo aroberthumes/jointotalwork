@@ -46,40 +46,25 @@ const Navbar = () => {
 
   return (
     <header className="fixed top-0 left-0 w-full bg-blue-600 shadow-md z-50">
-      <div className="flex justify-between items-center px-4 h-16"> {/* Shorter height */}
-        <a href="#home">
+      <div className="relative flex flex-col items-center px-4 h-48 md:h-32 md:flex-row md:justify-between">
+
+        {/* Logo */}
+        <a href="#home" className="mb-4 md:mb-0">
           <Image
             src="/TotalWorLogoWhite_cropped.png"
             alt="Company Logo"
-            width={100} // Reduced size
-            height={40} // Reduced size
+            width={110}
+            height={40}
             priority
           />
         </a>
 
-        {/* Navbar Links */}
-        <nav className="hidden sm:flex gap-8 text-white text-lg"> {/* Larger font size */}
-          {["home", "benefits", "testimonials", "pricing", "faq", "cta"].map((id) => (
-            <a
-              key={id}
-              href={`#${id}`}
-              className="hover:text-blue-300"
-              onClick={(e) => {
-                e.preventDefault();
-                handleScroll(id);
-              }}
-            >
-              {id.charAt(0).toUpperCase() + id.slice(1)}
-            </a>
-          ))}
-        </nav>
-
         {/* Burger Menu */}
         <div
-          className="cursor-pointer flex flex-col gap-1 sm:hidden sm:absolute sm:top-4 sm:right-4" // Position for desktop
-          onClick={toggleDropdown}
-          ref={burgerRef}
-        >
+            className="cursor-pointer flex flex-col gap-1 md:right-6"
+            onClick={toggleDropdown}
+            ref={burgerRef}
+          >
           <div className="w-6 h-1 bg-white"></div>
           <div className="w-6 h-1 bg-white"></div>
           <div className="w-6 h-1 bg-white"></div>

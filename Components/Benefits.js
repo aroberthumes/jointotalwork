@@ -49,7 +49,7 @@ const Benefits = () => (
       display: 'grid',
       gap: '20px'
     }}
-    className="text-center mx-auto max-w-7xl py-8"
+      className="text-center mx-auto max-w-6xl py-8 px-8"
   >
     <style jsx>{`
       section {

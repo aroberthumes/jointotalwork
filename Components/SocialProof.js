@@ -1,10 +1,10 @@
 import React from 'react';
 
 const SocialProof = () => (
-  <section id="social-proof">
-    <div className="flex flex-col gap-8 max-w-7xl w-full items-center">
+  <section id="social-proof" className="px-8">
+    <div className="flex flex-col gap-8 max-w-6xl w-full items-center mx-auto">
       <div className="flex-1 w-full mb-4">
-        <h2 className="text-3xl font-bold mb-8">Why Choose Our Workforce Management Solution?</h2>
+        <h2 className="text-3xl font-bold mb-8 text-center">Why Choose Our Workforce Management Solution?</h2>
         <div className="space-y-8">
           <div>
             <h3 className="text-xl font-semibold mb-2">Save 10+ Hours per Month</h3>
