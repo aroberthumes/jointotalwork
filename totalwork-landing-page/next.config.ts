@@ -1,8 +1,7 @@
 module.exports = {
   output: 'export',
   images: {
-    unoptimized: true,
+    unoptimized: true, // Required for GitHub Pages
   },
-  basePath: '/totalwork-landing-page',
-  assetPrefix: '/totalwork-landing-page',
+
 };

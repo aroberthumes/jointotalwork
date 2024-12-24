@@ -11,7 +11,7 @@ const Navbar = () => {
   const handleScroll = (id) => {
     const element = document.getElementById(id);
     if (element) {
-      const offset = 80;
+      const offset = 64; // Adjusted to match the new shorter navbar height
       const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
       const offsetPosition = elementPosition - offset;
       window.scrollTo({
@@ -46,69 +46,24 @@ const Navbar = () => {
 
   return (
     <header className="fixed top-0 left-0 w-full bg-blue-600 shadow-md z-50">
-      <div className="p-4">
-        {/* Mobile Layout */}
-        <div className="sm:hidden flex flex-col items-center">
-          <a href="#home">
-            <Image
-              src="/TotalWorLogoWhite_cropped.png"
-              alt="Company Logo"
-              width={120}
-              height={45}
-              priority
-            />
-          </a>
-          <div
-            className="mt-4 cursor-pointer flex flex-col gap-1"
-            onClick={toggleDropdown}
-            ref={burgerRef}
-          >
-            <div className="w-6 h-1 bg-white"></div>
-            <div className="w-6 h-1 bg-white"></div>
-            <div className="w-6 h-1 bg-white"></div>
-          </div>
-        </div>
+      <div className="flex justify-between items-center px-4 h-16"> {/* Shorter height */}
+        <a href="#home">
+          <Image
+            src="/TotalWorLogoWhite_cropped.png"
+            alt="Company Logo"
+            width={100} // Reduced size
+            height={40} // Reduced size
+            priority
+          />
+        </a>
 
-        {/* Desktop Layout */}
-        <div className="hidden sm:flex sm:justify-between sm:items-center">
-          <a href="#home">
-            <Image
-              src="/TotalWorLogoWhite_cropped.png"
-              alt="Company Logo"
-              width={120}
-              height={45}
-              priority
-            />
-          </a>
-          <nav className="flex gap-6 text-white text-lg">
-            {["home", "benefits", "testimonials", "pricing", "faq", "cta"].map((id) => (
-              <a
-                key={id}
-                href={`#${id}`}
-                className="hover:text-blue-300"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleScroll(id);
-                }}
-              >
-                {id.charAt(0).toUpperCase() + id.slice(1)}
-              </a>
-            ))}
-          </nav>
-        </div>
-
-        {/* Dropdown Menu */}
-        <nav
-          ref={dropdownRef}
-          className={`absolute left-1/2 transform -translate-x-1/2 bg-blue-600 text-white rounded-lg shadow-lg p-4 flex flex-col gap-2 ${
-            isDropdownOpen ? "scale-100" : "scale-0"
-          } origin-top-center transition-transform duration-200 mt-4 sm:hidden`}
-        >
+        {/* Navbar Links */}
+        <nav className="hidden sm:flex gap-8 text-white text-lg"> {/* Larger font size */}
           {["home", "benefits", "testimonials", "pricing", "faq", "cta"].map((id) => (
             <a
               key={id}
               href={`#${id}`}
-              className="hover:bg-blue-500 rounded px-2 py-1"
+              className="hover:text-blue-300"
               onClick={(e) => {
                 e.preventDefault();
                 handleScroll(id);
@@ -118,7 +73,40 @@ const Navbar = () => {
             </a>
           ))}
         </nav>
+
+        {/* Burger Menu */}
+        <div
+          className="cursor-pointer flex flex-col gap-1 sm:hidden sm:absolute sm:top-4 sm:right-4" // Position for desktop
+          onClick={toggleDropdown}
+          ref={burgerRef}
+        >
+          <div className="w-6 h-1 bg-white"></div>
+          <div className="w-6 h-1 bg-white"></div>
+          <div className="w-6 h-1 bg-white"></div>
+        </div>
       </div>
+
+      {/* Dropdown Menu */}
+      <nav
+        ref={dropdownRef}
+        className={`absolute left-1/2 transform -translate-x-1/2 bg-blue-600 text-white rounded-lg shadow-lg p-6 flex flex-col gap-4 ${
+          isDropdownOpen ? "scale-100" : "scale-0"
+        } origin-top-center transition-transform duration-200 mt-6`}
+      >
+        {["home", "benefits", "testimonials", "pricing", "faq", "cta"].map((id) => (
+          <a
+            key={id}
+            href={`#${id}`}
+            className="hover:bg-blue-500 rounded px-4 py-2 text-lg"
+            onClick={(e) => {
+              e.preventDefault();
+              handleScroll(id);
+            }}
+          >
+            {id.charAt(0).toUpperCase() + id.slice(1)}
+          </a>
+        ))}
+      </nav>
     </header>
   );
 };

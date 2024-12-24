@@ -8,7 +8,7 @@ import Pricing from "./Pricing";
 import FAQ from "./FAQ";
 import CTA from "./CTA";
 import Footer from "./Footer";
-import "./LandingPage.css";
+
 
 const LandingPage = () => (
   <div>

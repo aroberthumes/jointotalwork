@@ -1,10 +1,15 @@
 import React from 'react';
-import './Footer.css';
 
 const Footer = () => (
-  <footer className="footer">
-    <a href="#privacy">Privacy Policy</a>
-    <a href="#terms">Terms of Service</a>
+  <footer className="bg-blue-600 text-gray-50 text-center py-5">
+    <div className="space-x-5">
+      <a href="#privacy" className="text-gray-50 no-underline hover:underline">
+        Privacy Policy
+      </a>
+      <a href="#terms" className="text-gray-50 no-underline hover:underline">
+        Terms of Service
+      </a>
+    </div>
   </footer>
 );
 

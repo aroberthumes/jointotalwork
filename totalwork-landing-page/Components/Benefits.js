@@ -2,7 +2,6 @@
 
 import React from "react";
 import Image from "next/image";
-import "./Benefits.css";
 
 const benefitsData = [
   {
@@ -44,17 +43,39 @@ const benefitsData = [
 ];
 
 const Benefits = () => (
-  <section id="benefits" className="benefits">
+  <section 
+    id="benefits" 
+    style={{ 
+      display: 'grid',
+      gap: '20px'
+    }}
+    className="text-center mx-auto max-w-7xl py-8"
+  >
+    <style jsx>{`
+      section {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      
+      @media (max-width: 425px) {
+        section {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+    `}</style>
     {benefitsData.map((benefit, index) => (
-      <div key={index} className="benefit-item">
+      <div 
+        key={index} 
+        className="flex flex-col items-center"
+        style={{ height: 'fit-content' }}
+      >
         <Image
           src={benefit.icon}
           alt={benefit.alt}
-          width={64} // Set appropriate dimensions for your icons
+          width={64}
           height={64}
-          className="benefit-icon"
+          className="w-20 mb-2.5"
         />
-        <p>{benefit.description}</p>
+        <p className="text-base">{benefit.description}</p>
       </div>
     ))}
   </section>
