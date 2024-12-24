@@ -2,15 +2,15 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: [], // Add any external domains if you're using external images
+    domains: [], // add external domains here if needed
   },
   webpack: (config) => {
     config.resolve = {
       ...config.resolve,
       fallback: { 
         fs: false, 
-        path: false 
-      }
+        path: false,
+      },
     };
     return config;
   },
